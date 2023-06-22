@@ -1,0 +1,15 @@
+[[package]]
+name = "windows-curses"
+version = "2.3.1"
+description = "Support for the standard curses module on Windows"
+category = "main"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.10"
+content-hash = "bb8f7f9f9a1803eafafd9f3d9ee1dc041005b62a0a937099f2bb9fbb39b8517c"
+
+[metadata.files]
+windows-curses = []
