@@ -89,6 +89,8 @@ class Snake:
             return
         if ch == curses.KEY_DOWN and self.direction == curses.KEY_UP:
             return 
+        if ch == 112:
+            return
 
         self.direction = ch
 
@@ -172,28 +174,38 @@ class Snake:
 def main(screen):
     # Configure screen
     screen.timeout(0)
+    # screen.nodelay(1)
 
     # Init snake & field
     field = Field(20)
     snake = Snake("Joe")
     snake.set_field(field)
 
-    while(True):
+    paused = False
+
+    while True:
         # Get last pressed key
         ch = screen.getch()
         if ch != -1:
-            # If some arrows did pressed - change direction
+            # If some arrows were pressed - change direction
             snake.set_direction(ch)
 
-        # Move snake
-        snake.move()
-        
-        # Render field
-        field.render(screen)
-        screen.refresh()
-        
-        time.sleep(.1)
+            # Pause function
+            if ch == 112:  # 'p' key
+                if paused:
+                    paused = False
+                elif not paused:
+                    paused = True
 
+        if not paused:
+            # Move snake
+            snake.move()
+
+            # Render field
+            field.render(screen)
+            screen.refresh()
+
+        time.sleep(.1)
 
 if __name__=='__main__':
     curses.wrapper(main)
